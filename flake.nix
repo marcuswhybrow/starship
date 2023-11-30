@@ -22,7 +22,7 @@
 
     packages.x86_64-linux.starship = pkgs.symlinkJoin {
       name = "starship";
-      paths = [ wrapper pkgs.starship ];
+      paths = [ wrapper pkgs.starship ]; # first ./bin/starship takes precedence
     };
 
     packages.x86_64-linux.default = inputs.self.packages.x86_64-linux.starship;
