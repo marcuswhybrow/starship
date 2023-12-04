@@ -7,9 +7,9 @@
     pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
     tomlFormat = pkgs.formats.toml {};
     configFile = tomlFormat.generate "starship.toml" {
-      nix_shell = [
-        { heuristic = true; }
-      ];
+      nix_shell = {
+        heuristic = true; 
+      };
     };
     wrapper = pkgs.runCommand "starship-wrapper" {
       nativeBuildInputs = [ pkgs.makeWrapper ];
