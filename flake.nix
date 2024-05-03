@@ -11,6 +11,7 @@
         heuristic = true; 
       };
     };
+
     wrapper = pkgs.runCommand "starship-wrapper" {
       nativeBuildInputs = [ pkgs.makeWrapper ];
     } ''
@@ -18,11 +19,21 @@
       makeWrapper ${pkgs.starship}/bin/starship $out/bin/starship \
         --set STARSHIP_CONFIG ${configFile}
     '';
+
+    fishInit = pkgs.writeTextDir "share/fish/vendor_conf.d/starship.fish" ''
+      if status is-interactive
+        ${wrapper}/bin/starship init fish | source
+      end
+    '';
   in {
 
     packages.x86_64-linux.starship = pkgs.symlinkJoin {
       name = "starship";
-      paths = [ wrapper pkgs.starship ]; # first ./bin/starship takes precedence
+      paths = [ 
+        wrapper # first ./bin/starship takes precedence
+        pkgs.starship 
+        fishInit 
+      ]; 
     };
 
     packages.x86_64-linux.default = inputs.self.packages.x86_64-linux.starship;
