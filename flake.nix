@@ -9,34 +9,18 @@
     configFile = tomlFormat.generate "starship.toml" {
       nix_shell = {
         heuristic = true; 
-        pure_msg = "pure";
-        impure_msg = "impure";
-        symbol = "";
-        style = "fg:8"; # brightblack (grey)
-        format = "[nix/$state]($style)";
+        format = "[nix/$state](fg:8) "; # fg:8 = brightblack/grey
       };
       git_branch.disabled = true;
       git_commit.disabled = true;
       git_state.disabled = true;
       git_metrics.disabled = true;
       git_status.disabled = true;
-      rust = {
-        symbol = " ";
-        style = "fg:8";
-        format = "[rust/$version]($style) ";
-      };
-      nodejs = {
-        symbol = "󰎙 ";
-        style = "fg:8";
-        format = "[node/$version]($style) ";
-        detect_folders = []; # prevents triggering on node_modules
-      };
-      package = {
-        symbol = "󰏗 ";
-        style = "fg:8";
-        format = "[$version]($style) ";
-      };
+      rust.format = "[rust/$version](fg:8) ";
+      nodejs.format = "[node/$version](fg:8) ";
+      package.format = "[$version](fg:8) ";
       golang.format = "[go/$version](fg:8) ";
+      cmd_duration.format = "[took/$duration](fg:8) ";
     };
 
     wrapper = pkgs.runCommand "starship-wrapper" {
