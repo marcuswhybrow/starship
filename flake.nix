@@ -7,20 +7,21 @@
     pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
     tomlFormat = pkgs.formats.toml {};
     configFile = tomlFormat.generate "starship.toml" {
+      directory.style = "bold";
       nix_shell = {
         heuristic = true; 
-        format = "[nix/$state](fg:8) "; # fg:8 = brightblack/grey
+        format = "[nix/$state](bright-black) ";
       };
       git_branch.disabled = true;
       git_commit.disabled = true;
       git_state.disabled = true;
       git_metrics.disabled = true;
       git_status.disabled = true;
-      rust.format = "[rust/$version](fg:8) ";
-      nodejs.format = "[node/$version](fg:8) ";
-      package.format = "[$version](fg:8) ";
-      golang.format = "[go/$version](fg:8) ";
-      cmd_duration.format = "[took/$duration](fg:8) ";
+      rust.format = "[rust/$version](bright-black) ";
+      nodejs.format = "[node/$version](bright-black) ";
+      package.format = "[$version](bright-black) ";
+      golang.format = "[go/$version](bright-black) ";
+      cmd_duration.format = "[took/$duration](bright-black) ";
     };
 
     wrapper = pkgs.runCommand "starship-wrapper" {
