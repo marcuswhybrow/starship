@@ -10,18 +10,19 @@
       directory.style = "bold";
       nix_shell = {
         heuristic = true; 
-        format = "[nix/$state](bright-black) ";
+        format = "[nix@$state](bright-black) ";
       };
       git_branch.disabled = true;
       git_commit.disabled = true;
       git_state.disabled = true;
       git_metrics.disabled = true;
       git_status.disabled = true;
-      rust.format = "[rust/$version](bright-black) ";
-      nodejs.format = "[node/$version](bright-black) ";
-      package.format = "[$version](bright-black) ";
-      golang.format = "[go/$version](bright-black) ";
-      cmd_duration.format = "[took/$duration](bright-black) ";
+      rust.format = "[rust(@$version)](bright-black) ";
+      nodejs.format = "[node(@$version)](bright-black) ";
+      package.format = "([$version](bright-black) )";
+      golang.format = "[go(@$version)](bright-black) ";
+      cmd_duration.format = "([$duration)](bright-black) ";
+      lua.format = "[lua(@$version)](bright-black) ";
     };
 
     wrapper = pkgs.runCommand "starship-wrapper" {
