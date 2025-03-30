@@ -21,7 +21,7 @@
       nodejs.format = "[node(@$version)](bright-black) ";
       package.format = "([$version](bright-black) )";
       golang.format = "[go(@$version)](bright-black) ";
-      cmd_duration.format = "([$duration)](bright-black) ";
+      cmd_duration.format = "([$duration](bright-black) )";
       lua.format = "[lua(@$version)](bright-black) ";
     };
 
